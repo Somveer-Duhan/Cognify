@@ -4,9 +4,11 @@ import Dashboard from './pages/Dashboard';
 import Loginpage from './pages/Loginpage';
 import Signup from './pages/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './components/authContext';
 
 function App(){
   return(
+    <AuthProvider>
     <Router basename="/Somveer-Duhan/cognify.git">
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard"/>}/>
@@ -15,6 +17,7 @@ function App(){
         <Route path ="/dashboard" element={<ProtectedRoute><Dashboard></Dashboard></ProtectedRoute>}/>
       </Routes>
     </Router>
+    </AuthProvider>
   );
 }
 export default App;

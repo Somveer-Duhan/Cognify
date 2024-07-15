@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAuth } from './authContext'; // Ensure the path is correct
 
 const Navbar = () => {
+  const { isAuthenticated, logout } = useAuth(); // Get authentication status and logout function
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">Cognify</Link>
@@ -11,12 +13,20 @@ const Navbar = () => {
           <li className="nav-item">
             <Link className="nav-link" to="/">Dashboard</Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/signup">Sign Up</Link>
-          </li>
+          {isAuthenticated ? (
+            <li className="nav-item">
+              <button className="nav-link btn" onClick={logout}>Logout</button>
+            </li>
+          ) : (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">Login</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/signup">Sign Up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
