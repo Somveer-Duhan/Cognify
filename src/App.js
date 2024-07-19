@@ -1,16 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router,Route,Routes,Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
+import LandingPage from './pages/LandingPage';
 import Loginpage from './pages/Loginpage';
 import Signup from './pages/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
-import { AuthProvider } from './components/authContext';
+import { AuthProvider } from './contexts/authContext';
 
 function App(){
   return(
     <AuthProvider>
     <Router basename="/Somveer-Duhan/cognify.git">
       <Routes>
+        <Route path="/" element={<LandingPage/>}/>
         <Route path="/" element={<Navigate to="/dashboard"/>}/>
         <Route path ="/login" element={<Loginpage/>}/>
         <Route path ="/signup" element={<Signup/>}/>
